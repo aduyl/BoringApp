@@ -15,6 +15,7 @@ protocol MainPresenterProtocol: AnyObject {
     func menuButtonClicked()
     func showAlertView(with text: String)
     func pushSortController(controller: UIViewController, transition: CATransition)
+    func animateButton(sender: UIButton)
 }
 
 final class MainPresenter: MainPresenterProtocol {
@@ -55,5 +56,13 @@ final class MainPresenter: MainPresenterProtocol {
         view.showSortViewController(controller, transition: transition)
     }
     
+    func animateButton(sender: UIButton) {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5) {
+                sender.transform = sender.transform.rotated(by: CGFloat.pi)
+                sender.transform = sender.transform.rotated(by: CGFloat.pi)
+            }
+        }
+    }
 
 }

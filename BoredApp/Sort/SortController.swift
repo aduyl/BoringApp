@@ -56,6 +56,10 @@ final class SortController: UIViewController, SortControllerProtocol {
         presenter.configureView()
     }
     
+    override public var shouldAutorotate: Bool {
+            return false
+        }
+    
     // MARK: - private methods
     @objc private func closeBuottonClicked() {
         presenter.goToPreviousController()
@@ -121,10 +125,6 @@ final class SortController: UIViewController, SortControllerProtocol {
         sender.alpha = 0.4
         if let type = sender.currentTitle {
             request.type = type
-            participantsAndPriceView.participantsTextField.placeholder = "Type the number of participants"
-            participantsAndPriceView.participantsTextField.backgroundColor = nil
-            participantsAndPriceView.participantsTextField.isEnabled = true
-            participantsAndPriceView.priceSwitch.isEnabled = true
         }
     }
     
@@ -133,11 +133,6 @@ final class SortController: UIViewController, SortControllerProtocol {
         sender.alpha = 0.4
         request.type = nil
         request.price = nil
-        request.participants = nil
-        participantsAndPriceView.participantsTextField.text = ""
-        participantsAndPriceView.participantsTextField.placeholder = "just no"
-        participantsAndPriceView.participantsTextField.isEnabled = false
-        participantsAndPriceView.priceSwitch.isEnabled = false
     }
     
 }
