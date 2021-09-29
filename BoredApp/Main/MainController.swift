@@ -31,6 +31,10 @@ final class MainController: UIViewController, MainControllerProtocol, DataDelega
         presenter.configureView()
     }
     
+    override public var shouldAutorotate: Bool {
+            return false
+        }
+    
     // MARK: - public methods
     func configureActivityProperties(activity: Activity) {
         DispatchQueue.main.async{
@@ -67,7 +71,8 @@ final class MainController: UIViewController, MainControllerProtocol, DataDelega
         presenter.menuButtonClicked()
     }
     
-    @objc private func redoButtonClicked() {
+    @objc private func redoButtonClicked(sender: UIButton) {
+        presenter.animateButton(sender: sender)
         presenter.requestActivity()
     }
     
@@ -88,7 +93,7 @@ final class MainController: UIViewController, MainControllerProtocol, DataDelega
     
     private func configureRedo() {
         view.addSubview(redoButton)
-        redoButton.setImage( UIImage(systemName: "arrow.counterclockwise", withConfiguration: mediumConfig), for: .normal)
+        redoButton.setImage( UIImage(systemName: "arrow.clockwise", withConfiguration: mediumConfig), for: .normal)
         redoButton.tintColor = .black
         redoButton.translatesAutoresizingMaskIntoConstraints = false
         redoButton.addTarget(self, action: #selector(redoButtonClicked), for: .touchDown)
@@ -111,8 +116,8 @@ final class MainController: UIViewController, MainControllerProtocol, DataDelega
         activityCardView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            activityCardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.activityCardIndend),
-            activityCardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.activityCardIndend),
+            activityCardView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.activityCardIndend),
+            activityCardView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.activityCardIndend),
             activityCardView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityCardView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
