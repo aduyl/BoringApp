@@ -30,7 +30,6 @@ final class MainController: UIViewController, MainControllerProtocol, DataDelega
         presenter.requestActivity()
         presenter.configureView()
     }
-    // MARK: - TODO
     
     // MARK: - public methods
     func configureActivityProperties(activity: Activity) {
