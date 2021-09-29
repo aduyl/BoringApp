@@ -88,7 +88,6 @@ final class SortController: UIViewController, SortControllerProtocol {
         delegate?.transferRequestActivity(requestActivity: request)
     }
     
-    // MARK: - TODO
     func configure() {
         view.backgroundColor = Constants.backgroundColor
         view.addSubview(closeButton)
