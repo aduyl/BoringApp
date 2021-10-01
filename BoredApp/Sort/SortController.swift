@@ -56,10 +56,6 @@ final class SortController: UIViewController, SortControllerProtocol {
         presenter.configureView()
     }
     
-    override public var shouldAutorotate: Bool {
-            return false
-        }
-    
     // MARK: - private methods
     @objc private func closeBuottonClicked() {
         presenter.goToPreviousController()
@@ -92,6 +88,7 @@ final class SortController: UIViewController, SortControllerProtocol {
         delegate?.transferRequestActivity(requestActivity: request)
     }
     
+    // MARK: - TODO
     func configure() {
         view.backgroundColor = Constants.backgroundColor
         view.addSubview(closeButton)

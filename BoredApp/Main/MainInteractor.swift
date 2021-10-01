@@ -13,6 +13,7 @@ protocol MainInteractorProtocol: AnyObject {
 }
 
 final class MainInteractor: MainInteractorProtocol {
+    
     weak var presenter: MainPresenterProtocol!
     let network: NetworkLayerProtocol = NetworkLayer()
     var url = Constants.url
@@ -25,9 +26,8 @@ final class MainInteractor: MainInteractorProtocol {
         network.fetchActivity(url: url) {
             result in
             switch result {
-            case .failure(let error):
-                let code = (error as NSError).code
-                self.presenter.showAlertView(with: self.allertText(errorCode: code))
+            case .failure(_):
+                self.presenter.showAlertView(with: "No activity found with the specified parameters")
                 self.url = Constants.url
             case .success(let data):
                 self.presenter.updateActivity(activity: data)
@@ -39,9 +39,6 @@ final class MainInteractor: MainInteractorProtocol {
         self.url = convertURL(requerstActivity: requerstActivity)
     }
     
-}
-
-extension MainInteractor {
     func convertURL(requerstActivity: RequestActivity) -> String {
         var url: String = "\(Constants.url)?"
         if let participants = requerstActivity.participants {
@@ -56,17 +53,13 @@ extension MainInteractor {
                 url = "\(url)price=0.0&"
             }
         }
+        
         if let type = requerstActivity.type {
             url = "\(url)type=\(type)&"
         }
+        
         url.removeLast()
         return url
     }
     
-    func allertText(errorCode: Int) -> String {
-        if errorCode == -1009 {
-            return "No Internet connection"
-        }
-        return "No activity found with the specified parameters"
-    }
 }

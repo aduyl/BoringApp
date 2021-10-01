@@ -57,12 +57,12 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     func animateButton(sender: UIButton) {
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.5) {
-                sender.transform = sender.transform.rotated(by: CGFloat.pi)
-                sender.transform = sender.transform.rotated(by: CGFloat.pi)
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.5) {
+                    sender.transform = sender.transform.rotated(by: CGFloat.pi)
+                    sender.transform = sender.transform.rotated(by: CGFloat.pi)
+                }
             }
         }
-    }
 
 }

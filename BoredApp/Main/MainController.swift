@@ -30,10 +30,7 @@ final class MainController: UIViewController, MainControllerProtocol, DataDelega
         presenter.requestActivity()
         presenter.configureView()
     }
-    
-    override public var shouldAutorotate: Bool {
-            return false
-        }
+    // MARK: - TODO
     
     // MARK: - public methods
     func configureActivityProperties(activity: Activity) {
@@ -72,8 +69,9 @@ final class MainController: UIViewController, MainControllerProtocol, DataDelega
     }
     
     @objc private func redoButtonClicked(sender: UIButton) {
-        presenter.animateButton(sender: sender)
         presenter.requestActivity()
+        presenter.animateButton(sender: sender)
+        
     }
     
     private func configureMenu() {
@@ -116,8 +114,8 @@ final class MainController: UIViewController, MainControllerProtocol, DataDelega
         activityCardView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            activityCardView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.activityCardIndend),
-            activityCardView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.activityCardIndend),
+            activityCardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.activityCardIndend),
+            activityCardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.activityCardIndend),
             activityCardView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityCardView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])

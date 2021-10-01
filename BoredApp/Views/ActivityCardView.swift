@@ -94,7 +94,7 @@ final class ActivityCardView: UIView {
         view.addSubview(priceLabel)
         view.addSubview(priceImageView)
         
-        activityLabel.font = UIFont.boldSystemFont(ofSize: (view.frame.height - 2 * Constants.indent) / 10 )
+        activityLabel.font = UIFont.boldSystemFont(ofSize: (view.frame.height - 2 * Constants.indent) / 12 )
         
         NSLayoutConstraint.activate([
             typeLabel.topAnchor.constraint(equalTo: view.topAnchor),
